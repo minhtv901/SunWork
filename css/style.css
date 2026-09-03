@@ -360,7 +360,7 @@ body{
   position:absolute;
   left:50%;
   top:53%;
-  width:220px;
+  width:300px;
   transform:translate(-50%,-50%);
   z-index:3;
   animation:mascotFloat 3.8s ease-in-out infinite;
@@ -471,5 +471,111 @@ body{
   50%{
     translate:0 -12px;
     scale:1.04;
+  }
+}
+
+
+/* SunWork external mascot image replacement */
+.sun-mascot{
+  position:absolute;
+  left:50.5%;
+  top:60%;
+  width:550px;
+  transform:translate(-50%,-50%);
+  z-index:3;
+  animation:mascotFloat 4s ease-in-out infinite;
+  filter:drop-shadow(0 22px 35px rgba(180,120,30,.16));
+}
+
+.sun-mascot-image{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:contain;
+}
+
+@keyframes mascotFloat{
+  0%,100%{transform:translate(-50%,-50%) translateY(0)}
+  50%{transform:translate(-50%,-50%) translateY(-10px)}
+}
+
+
+/* Floating SunWork information labels */
+.sun-label{
+  position:absolute;
+  z-index:5;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(255,159,28,.25);
+  border-radius:22px;
+  padding:18px 22px;
+  min-width:150px;
+  box-shadow:0 15px 35px rgba(170,100,20,.12);
+  backdrop-filter:blur(10px);
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  animation:labelFloat 3.5s ease-in-out infinite;
+}
+
+.sun-label strong{
+  color:#a85b00;
+  font-size:17px;
+  font-weight:800;
+}
+
+.sun-label span{
+  color:#9a7b5b;
+  font-size:14px;
+}
+
+.saved-label{
+  left:15px;
+  bottom:75px;
+}
+
+.talent-label{
+  right:15px;
+  bottom:45px;
+  animation-delay:1s;
+}
+
+@keyframes labelFloat{
+  50%{
+    transform:translateY(-8px);
+  }
+}
+
+.sun-work-badge{
+  position:absolute;
+  z-index:6;
+  left:50%;
+  top:100px;
+  transform:translateX(-50%);
+  min-width:150px;
+  padding:16px 34px;
+  border-radius:28px;
+  background:linear-gradient(180deg,#fffdf5,#fff0c7);
+  border:1px solid rgba(255,159,28,.3);
+  box-shadow:0 18px 40px rgba(255,159,28,.18);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  color:#c66b00;
+  animation:workFloat 3s ease-in-out infinite;
+}
+
+.sun-work-badge span{
+  font-size:16px;
+}
+
+.sun-work-badge strong{
+  font-size:24px;
+  letter-spacing:2px;
+}
+
+@keyframes workFloat{
+  50%{
+    transform:translateX(-50%) translateY(-10px);
   }
 }

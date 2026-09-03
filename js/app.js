@@ -217,73 +217,23 @@ function renderHome() {
         <div class="sun-ray ray-4"></div>
         
 <div class="sun-mascot">
-<svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg">
-
-<!-- hair back -->
-<path d="M82 65 C75 25 145 20 151 68 L145 92 L85 92Z"
- fill="#5a351d"/>
-
-<!-- head back -->
-<path d="M91 58 C96 35 130 34 139 60 L136 102 C123 120 100 110 92 92Z"
- fill="#f3c49d"/>
-
-<!-- neck -->
-<path d="M111 102 L111 122 L132 122 L132 102"
- fill="#e9b98f"/>
-
-<!-- body hoodie -->
-<path d="M72 125 C86 112 137 112 150 128 L163 215
-C132 240 86 240 60 215Z"
- fill="url(#shirtGradient)"/>
-
-<!-- left raised arm -->
-<g class="mascot-arm">
-<path d="M78 138 C52 118 42 70 34 40
-C31 30 45 25 50 36
-L87 126Z"
- fill="#efbf99"/>
-</g>
-
-<!-- right raised arm -->
-<g class="mascot-arm">
-<path d="M145 138 C170 115 181 70 188 38
-C191 27 176 23 172 35
-L136 126Z"
- fill="#efbf99"/>
-</g>
-
-<!-- hands -->
-<circle cx="37" cy="35" r="10" fill="#efbf99"/>
-<circle cx="185" cy="34" r="10" fill="#efbf99"/>
-
-<!-- legs -->
-<path d="M85 220 L85 285 Q100 292 112 282 L110 220Z"
- fill="#ffdca8"/>
-<path d="M120 220 L120 282 Q135 292 148 282 L145 220Z"
- fill="#ffdca8"/>
-
-<!-- shoes -->
-<path d="M78 282 Q100 270 120 284 Q103 300 76 292Z"
- fill="#6d3c1c"/>
-<path d="M120 282 Q140 270 159 285 Q140 300 118 292Z"
- fill="#6d3c1c"/>
-
-<!-- highlight -->
-<path d="M91 130 C110 120 130 120 145 135"
- stroke="#fff4d2" stroke-width="5" fill="none" opacity=".8"/>
-
-<defs>
-<linearGradient id="shirtGradient">
-<stop stop-color="#fff8e9"/>
-<stop offset="1" stop-color="#ffd36b"/>
-</linearGradient>
-</defs>
-
-</svg>
+  <img src="images/sun-mascot.png" class="sun-mascot-image" alt="SunWork mascot">
 </div>
-        <div class="sun-work-bubble">WORK</div>
-        <div class="sun-note note-a"><b>Saved Jobs</b><span>+3 hôm nay</span></div>
-        <div class="sun-note note-b"><b>Talent Board</b><span>2 ứng viên nổi bật</span></div>
+
+<div class="sun-label saved-label">
+  <strong>Saved Jobs</strong>
+  <span>+3 hôm nay</span>
+</div>
+
+<div class="sun-label talent-label">
+  <strong>Talent Board</strong>
+  <span>2 ứng viên nổi bật</span>
+</div>
+
+<div class="sun-work-badge">
+  <span>✦</span>
+  <strong>WORK</strong>
+</div>
       </div>
     </div>
   </section>
