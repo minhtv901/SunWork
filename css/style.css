@@ -579,3 +579,39 @@ body{
     transform:translateX(-50%) translateY(-10px);
   }
 }
+
+/* =========================================================
+   AUTH MODAL SCROLL FIX
+   ========================================================= */
+body.modal-open{overflow:hidden}
+#auth-modal.modal-overlay{
+  overflow-y:auto !important;
+  align-items:center;
+  padding:24px 16px !important;
+}
+#auth-modal .auth-modal{
+  max-height:90vh !important;
+  overflow:hidden !important;
+}
+#auth-modal .auth-content{
+  max-height:90vh !important;
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,159,28,.55) transparent;
+}
+#auth-modal .auth-content::-webkit-scrollbar{width:7px}
+#auth-modal .auth-content::-webkit-scrollbar-track{background:transparent}
+#auth-modal .auth-content::-webkit-scrollbar-thumb{background:rgba(255,159,28,.55);border-radius:999px}
+#auth-modal #auth-form{padding-bottom:24px}
+@media(max-height:700px){
+  #auth-modal.modal-overlay{align-items:flex-start !important;padding-top:14px !important;padding-bottom:14px !important}
+  #auth-modal .auth-modal{max-height:96vh !important}
+  #auth-modal .auth-content{max-height:96vh !important}
+}
+@media(max-width:720px){
+  #auth-modal.modal-overlay{padding:10px !important}
+  #auth-modal .auth-modal{max-height:96vh !important}
+  #auth-modal .auth-content{max-height:96vh !important}
+}
