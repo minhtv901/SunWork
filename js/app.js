@@ -853,12 +853,12 @@ function showJob(jobId) {
       </div>
 
       <div class="job-info-grid">
-        <div class="job-info-card"><span>💰</span><div><small>Mức lương</small><b>${esc(job.salary)}</b></div></div>
-        <div class="job-info-card"><span>📍</span><div><small>Địa điểm</small><b>${esc(job.location)}</b></div></div>
-        <div class="job-info-card"><span>🕒</span><div><small>Hình thức</small><b>${esc(job.type)}</b></div></div>
-        <div class="job-info-card"><span>📚</span><div><small>Kinh nghiệm</small><b>${esc(job.experience)}</b></div></div>
-        <div class="job-info-card"><span>👥</span><div><small>Số lượng</small><b>${esc(job.quantity || 1)} người</b></div></div>
-        <div class="job-info-card"><span>⏰</span><div><small>Thời gian</small><b>${esc(job.workingTime || 'Trao đổi khi phỏng vấn')}</b></div></div>
+        <div class="job-info-card"><span>💰</span><div><small>Mức lương: </small><b>${esc(job.salary)}</b></div></div>
+        <div class="job-info-card"><span>📍</span><div><small>Địa điểm: </small><b>${esc(job.location)}</b></div></div>
+        <div class="job-info-card"><span>🕒</span><div><small>Hình thức: </small><b>${esc(job.type)}</b></div></div>
+        <div class="job-info-card"><span>📚</span><div><small>Kinh nghiệm: </small><b>${esc(job.experience)}</b></div></div>
+        <div class="job-info-card"><span>👥</span><div><small>Số lượng: </small><b>${esc(job.quantity || 1)} người</b></div></div>
+        <div class="job-info-card"><span>⏰</span><div><small>Thời gian: </small><b>${esc(job.workingTime || 'Trao đổi khi phỏng vấn')}</b></div></div>
       </div>
 
       <div class="job-detail-layout">
