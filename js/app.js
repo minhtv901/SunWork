@@ -146,7 +146,7 @@ function seedEmployerAccount() {
   setUsers(users);
 }
 
-function esc(s = "") {
+function formatJobText(value){return esc(value||'').replace(/\n/g,'<br>');}\n\nfunction esc(s = "") {
   return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
 
@@ -837,10 +837,10 @@ function showJob(jobId) {
     <div class="job-detail-header"><div class="job-detail-top"><div class="job-logo xl">${esc(job.logo)}</div><div><span class="eyebrow">SUN OPPORTUNITY</span><h2>${esc(job.title)}</h2><p>${esc(job.company)}</p></div></div><span class="status success">Đang mở</span></div>
     <div class="detail-meta-grid"><div><b>Mức lương</b><span>${esc(job.salary)}</span></div><div><b>Địa điểm</b><span>${esc(job.location)}</span></div><div><b>Hình thức</b><span>${esc(job.type)}</span></div><div><b>Kinh nghiệm</b><span>${esc(job.experience)}</span></div></div>
     <div class="job-detail-body"><div class="detail-main">
-      <section><h3>Mô tả công việc</h3><p>${esc(job.description)}</p></section>
+      <section><h3>Mô tả công việc</h3><p class="job-text">${formatJobText(job.description)}</p></section>
       <section><h3>Kỹ năng</h3><div class="tag-row">${job.skills.map(s => `<span class="tag">${esc(s)}</span>`).join('')}</div></section>
-      <section><h3>Yêu cầu</h3><ul>${job.requirements.map(r => `<li>${esc(r)}</li>`).join('')}</ul></section>
-      <section><h3>Quyền lợi</h3><ul>${job.benefits.map(r => `<li>${esc(r)}</li>`).join('')}</ul></section>
+      <section><h3>Yêu cầu</h3><ul>${job.requirements.map(r => `<li>${formatJobText(r)}</li>`).join('')}</ul></section>
+      <section><h3>Quyền lợi</h3><ul>${job.benefits.map(r => `<li>${formatJobText(r)}</li>`).join('')}</ul></section>
       <section><h3>Về công ty</h3><p>${esc(job.companyDesc)}</p></section>
     </div>
     <aside class="detail-side"><div class="application-box"><span class="status success">HOT MATCH</span><h3>Độ phù hợp</h3><b>Rất tiềm năng</b><p>Hãy lưu việc hoặc ứng tuyển ngay nếu bạn thấy phù hợp.</p><div class="detail-actions-stack"><button class="btn btn-primary btn-full" data-apply-job="${job.id}">Ứng tuyển ngay</button><button class="btn btn-soft btn-full" data-save-job="${job.id}">${saved ? '♥ Đã lưu việc' : '♡ Lưu việc'}</button></div></div></aside></div>`;

@@ -649,3 +649,7 @@ body.modal-open{overflow:hidden}
 .job-meta-card {
     white-space: normal;
 }
+
+
+.job-text{white-space:pre-line;line-height:1.8;}
+.job-text br{display:block;content:'';margin-bottom:6px;}
