@@ -653,3 +653,9 @@ body.modal-open{overflow:hidden}
 
 .job-text{white-space:pre-line;line-height:1.8;}
 .job-text br{display:block;content:'';margin-bottom:6px;}
+
+.apply-contact p {
+    white-space: pre-line;
+    margin-top: 8px;
+    line-height: 1.6;
+}

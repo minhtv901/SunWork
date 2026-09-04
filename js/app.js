@@ -853,12 +853,12 @@ function showJob(jobId) {
       </div>
 
       <div class="job-info-grid">
-        <div class="job-info-card"><span>💰</span><div><small>Mức lương: </small><b>${esc(job.salary)}</b></div></div>
-        <div class="job-info-card"><span>📍</span><div><small>Địa điểm: </small><b>${esc(job.location)}</b></div></div>
-        <div class="job-info-card"><span>🕒</span><div><small>Hình thức: </small><b>${esc(job.type)}</b></div></div>
-        <div class="job-info-card"><span>📚</span><div><small>Kinh nghiệm: </small><b>${esc(job.experience)}</b></div></div>
-        <div class="job-info-card"><span>👥</span><div><small>Số lượng: </small><b>${esc(job.quantity || 1)} người</b></div></div>
-        <div class="job-info-card"><span>⏰</span><div><small>Thời gian: </small><b>${esc(job.workingTime || 'Trao đổi khi phỏng vấn')}</b></div></div>
+        <div class="job-info-card"><span>💰</span><div><small><b>Mức lương: </small>${esc(job.salary)}</b></div></div>
+        <div class="job-info-card"><span>📍</span><div><small><b>Địa điểm: </small>${esc(job.location)}</b></div></div>
+        <div class="job-info-card"><span>🕒</span><div><small><b>Hình thức: </small>${esc(job.type)}</b></div></div>
+        <div class="job-info-card"><span>📚</span><div><small><b>Kinh nghiệm: </small>${esc(job.experience)}</b></div></div>
+        <div class="job-info-card"><span>👥</span><div><small><b>Số lượng: </small>${esc(job.quantity || 1)} người</b></div></div>
+        <div class="job-info-card"><span>⏰</span><div><small><b>Thời gian: </small>${esc(job.workingTime || 'Trao đổi khi phỏng vấn')}</b></div></div>
       </div>
 
       <div class="job-detail-layout">
@@ -902,7 +902,7 @@ function showJob(jobId) {
 
             <div class="apply-contact">
               <span>📩 Cách ứng tuyển</span>
-              <b>${esc(job.applyMethod || 'Email công ty')}</b>
+              <p>${esc(job.applyMethod || 'Email công ty')}</p>
             </div>
 
             <button class="btn btn-primary btn-full" data-apply-job="${job.id}">
