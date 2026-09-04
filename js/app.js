@@ -833,19 +833,92 @@ function renderCompanyProfile() {
 function showJob(jobId) {
   const job = getJobs().find(j => j.id === Number(jobId));
   if (!job) return;
+
   const saved = getSavedJobs().includes(job.id);
+
   document.getElementById('job-modal-content').innerHTML = `
     <button class="modal-close" data-close-modal="job-modal">×</button>
-    <div class="job-detail-header"><div class="job-detail-top"><div class="job-logo xl">${esc(job.logo)}</div><div><span class="eyebrow">SUN OPPORTUNITY</span><h2>${esc(job.title)}</h2><p>${esc(job.company)}</p></div></div><span class="status success">Đang mở</span></div>
-    <div class="detail-meta-grid"><div><b>Mức lương</b><span>${esc(job.salary)}</span></div><div><b>Địa điểm</b><span>${esc(job.location)}</span></div><div><b>Hình thức</b><span>${esc(job.type)}</span></div><div><b>Kinh nghiệm</b><span>${esc(job.experience)}</span></div></div>
-    <div class="job-detail-body"><div class="detail-main">
-      <section><h3>Mô tả công việc</h3><p class="job-text">${formatJobText(job.description)}</p></section>
-      <section><h3>Kỹ năng</h3><div class="tag-row">${job.skills.map(s => `<span class="tag">${esc(s)}</span>`).join('')}</div></section>
-      <section><h3>Yêu cầu</h3><ul>${job.requirements.map(r => `<li>${formatJobText(r)}</li>`).join('')}</ul></section>
-      <section><h3>Quyền lợi</h3><ul>${job.benefits.map(r => `<li>${formatJobText(r)}</li>`).join('')}</ul></section>
-      <section><h3>Về công ty</h3><p>${esc(job.companyDesc)}</p></section>
+
+    <div class="job-detail-modern">
+      <div class="job-detail-header-modern">
+        <div class="company-brand">
+          <div class="job-logo xl">${esc(job.logo)}</div>
+          <div>
+            <span class="eyebrow">SUN OPPORTUNITY</span>
+            <h2>${esc(job.title)}</h2>
+            <p>${esc(job.company)}</p>
+          </div>
+        </div>
+        <span class="status success">Đang mở</span>
+      </div>
+
+      <div class="job-info-grid">
+        <div class="job-info-card"><span>💰</span><div><small>Mức lương</small><b>${esc(job.salary)}</b></div></div>
+        <div class="job-info-card"><span>📍</span><div><small>Địa điểm</small><b>${esc(job.location)}</b></div></div>
+        <div class="job-info-card"><span>🕒</span><div><small>Hình thức</small><b>${esc(job.type)}</b></div></div>
+        <div class="job-info-card"><span>📚</span><div><small>Kinh nghiệm</small><b>${esc(job.experience)}</b></div></div>
+        <div class="job-info-card"><span>👥</span><div><small>Số lượng</small><b>${esc(job.quantity || 1)} người</b></div></div>
+        <div class="job-info-card"><span>⏰</span><div><small>Thời gian</small><b>${esc(job.workingTime || 'Trao đổi khi phỏng vấn')}</b></div></div>
+      </div>
+
+      <div class="job-detail-layout">
+        <main class="job-detail-content">
+
+          <section class="job-section">
+            <h3>Mô tả công việc</h3>
+            <div class="job-description-box">${formatJobText(job.description)}</div>
+          </section>
+
+          <section class="job-section">
+            <h3>Kỹ năng cần có</h3>
+            <div class="tag-row">
+              ${job.skills.map(s => `<span class="tag">${esc(s)}</span>`).join('')}
+            </div>
+          </section>
+
+          <section class="job-section split-section">
+            <div>
+              <h3>Yêu cầu</h3>
+              <ul>${job.requirements.map(r => `<li>${formatJobText(r)}</li>`).join('')}</ul>
+            </div>
+            <div>
+              <h3>Quyền lợi</h3>
+              <ul>${job.benefits.map(r => `<li>${formatJobText(r)}</li>`).join('')}</ul>
+            </div>
+          </section>
+
+          <section class="job-section">
+            <h3>Về công ty</h3>
+            <p>${esc(job.companyDesc)}</p>
+          </section>
+
+        </main>
+
+        <aside class="job-apply-sidebar">
+          <div class="apply-box-modern">
+            <span class="eyebrow">ỨNG TUYỂN NGAY</span>
+            <h3>${esc(job.title)}</h3>
+            <p>${esc(job.company)}</p>
+
+            <div class="apply-contact">
+              <span>📩 Cách ứng tuyển</span>
+              <b>${esc(job.applyMethod || 'Email công ty')}</b>
+            </div>
+
+            <button class="btn btn-primary btn-full" data-apply-job="${job.id}">
+              Ứng tuyển ngay
+            </button>
+
+            <button class="btn btn-soft btn-full" data-save-job="${job.id}">
+              ${saved ? '♥ Đã lưu việc' : '♡ Lưu việc'}
+            </button>
+          </div>
+        </aside>
+
+      </div>
     </div>
-    <aside class="detail-side"><div class="application-box"><span class="status success">HOT MATCH</span><h3>Độ phù hợp</h3><b>Rất tiềm năng</b><p>Hãy lưu việc hoặc ứng tuyển ngay nếu bạn thấy phù hợp.</p><div class="detail-actions-stack"><button class="btn btn-primary btn-full" data-apply-job="${job.id}">Ứng tuyển ngay</button><button class="btn btn-soft btn-full" data-save-job="${job.id}">${saved ? '♥ Đã lưu việc' : '♡ Lưu việc'}</button></div></div></aside></div>`;
+  `;
+
   openModal('job-modal');
   bindDynamicEvents();
 }
