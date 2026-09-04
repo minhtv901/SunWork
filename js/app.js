@@ -1096,8 +1096,9 @@ function bindDynamicEvents() {
     const req = (fd.get('requirements') || '').split(';').map(x => x.trim()).filter(Boolean);
     const ben = (fd.get('benefits') || '').split(';').map(x => x.trim()).filter(Boolean);
     const skills = (fd.get('skills') || '').split(',').map(x => x.trim()).filter(Boolean);
-    jobs.unshift({
-      id: Date.now(),
+    const editId = postForm.dataset.editId ? Number(postForm.dataset.editId) : null;
+    const jobData = {
+      id: editId || Date.now(),
       employerId: user?.id || null,
       title: fd.get('title'),
       company,
@@ -1118,7 +1119,14 @@ function bindDynamicEvents() {
       requirements: req.length ? req : ['Trao đổi khi phỏng vấn'],
       benefits: ben.length ? ben : ['Thỏa thuận theo năng lực'],
       companyDesc: profile.description || `${company} đang tuyển dụng các vị trí Marketing và Creative.`
-    });
+    };
+    if(editId){
+      const index = jobs.findIndex(j=>Number(j.id)===editId);
+      if(index>=0) jobs[index] = {...jobs[index], ...jobData};
+    }else{
+      jobs.unshift(jobData);
+    }
+    delete postForm.dataset.editId;
     setJobs(jobs);
     toast('Tạo chiến dịch tuyển dụng thành công!');
     setRoute('manage-jobs');
