@@ -385,4 +385,16 @@ function seedData() {
   if (!localStorage.getItem("sunwork_talent_board")) localStorage.setItem("sunwork_talent_board", JSON.stringify([101, 102]));
 }
 
+
+function normalizeJobFields(){
+  const raw = localStorage.getItem("sunwork_jobs");
+  if(!raw) return;
+  const jobs = JSON.parse(raw).map(j=>({...j,
+    workingTime:j.workingTime || "Thứ 2 - Thứ 6, 8:30 - 17:30",
+    quantity:j.quantity || 1,
+    applyMethod:j.applyMethod || "Email"
+  }));
+  localStorage.setItem("sunwork_jobs", JSON.stringify(jobs));
+}
+
 seedData();
