@@ -1117,15 +1117,39 @@ function updateCandidateStatus(id, status) {
 }
 
 function initCVPreview() {
+  const STORAGE_KEY = 'sunwork_portfolio';
+
+  const loadPortfolio = () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      document.querySelectorAll('.cv-input').forEach(input => {
+        const key = input.dataset.cv;
+        if (saved[key] !== undefined) input.value = saved[key];
+      });
+    } catch(e) {}
+  };
+
   const update = () => {
+    const data = {};
     document.querySelectorAll('.cv-input').forEach(input => {
       const key = input.dataset.cv;
+      data[key] = input.value;
+
       const target = document.querySelector(`[data-preview="${key}"]`);
       if (!target) return;
-      if (key === 'skills') target.innerHTML = input.value.split(',').filter(Boolean).map(s => `<span>${esc(s.trim())}</span>`).join('');
-      else target.textContent = input.value;
+
+      if (key === 'skills') {
+        target.innerHTML = input.value.split(',').filter(Boolean)
+          .map(s => `<span>${esc(s.trim())}</span>`).join('');
+      } else {
+        target.textContent = input.value;
+      }
     });
+
+    window.currentPortfolio = data;
   };
+
+  loadPortfolio();
   document.querySelectorAll('.cv-input').forEach(i => i.addEventListener('input', update));
   update();
 }
@@ -1246,9 +1270,27 @@ const chatForm = document.getElementById('chat-form');
 
   // Giữ nguyên cơ chế Portfolio của SunWork (không copy phần CV của MoonWork).
   const saveCv = document.getElementById('save-cv');
-  if (saveCv) saveCv.onclick = () => toast('Đã lưu portfolio vào trình duyệt.');
+  if (saveCv) saveCv.onclick = () => {
+    const portfolio = {};
+    document.querySelectorAll('.cv-input').forEach(input => {
+      portfolio[input.dataset.cv] = input.value;
+    });
+
+    localStorage.setItem('sunwork_portfolio', JSON.stringify(portfolio));
+    toast('Đã lưu portfolio vào trình duyệt.', 'success');
+  };
+
   const resetCv = document.getElementById('reset-cv');
-  if (resetCv) resetCv.onclick = () => toast('Đã làm mới nội dung demo.', 'info');
+  if (resetCv) resetCv.onclick = () => {
+    localStorage.removeItem('sunwork_portfolio');
+
+    document.querySelectorAll('.cv-input').forEach(input => {
+      input.value = input.defaultValue || '';
+    });
+
+    document.querySelectorAll('.cv-input')[0]?.dispatchEvent(new Event('input'));
+    toast('Đã làm mới nội dung portfolio.', 'info');
+  };
 
   const saveProfile = document.getElementById('save-profile');
   if (saveProfile) saveProfile.onclick = () => {
